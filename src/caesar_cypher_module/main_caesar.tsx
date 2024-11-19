@@ -1,4 +1,4 @@
-import { Card, Input } from "antd";
+import { Card, Input, InputNumber } from "antd";
 import { useState } from "react";
 import { Typography } from "antd";
 import { encryptWithCaesarCypher } from "./logic_caesar";
@@ -6,8 +6,10 @@ import { encryptWithCaesarCypher } from "./logic_caesar";
 const { Title, Paragraph } = Typography;
 
 export default function CaesarCypherDemo() {
-  const defaultText = "Write your sentence";
+  const defaultTextSentence = "Write your sentence";
+  const defaultTextStep = "Write your step";
   const [text, setText] = useState<string>();
+  const [step, setStep] = useState<number>();
 
   return (
     <Card
@@ -20,17 +22,25 @@ export default function CaesarCypherDemo() {
       <Title level={3} style={{ textAlign: "center" }}>
         Caesar Cypher
       </Title>
+      <div style={{display : "flex", gap:"5px"}}>
       <Input
-        placeholder={defaultText}
+        placeholder={defaultTextSentence}
         value={text}
         onChange={(e) => setText(e.target.value)}
       />
+      <InputNumber
+        placeholder={defaultTextStep}
+        value={step}
+        onChange={(e) => setStep(e ?? 0)}
+      />
+
+      </div>
       <Paragraph style={{ marginTop: 20 }}>
         { (!text || text == '') ? 
           <span style={{ fontStyle: "italic", color: "gray" }}>
-            {defaultText}
+            {defaultTextSentence}
           </span>
-         : encryptWithCaesarCypher(text)
+         : encryptWithCaesarCypher(text,step)
         }
       </Paragraph>
     </Card>
