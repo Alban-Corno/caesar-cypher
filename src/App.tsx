@@ -1,5 +1,5 @@
 import './App.css';
-import CaesarCypherDemo from './caesar_cypher_module/main_caesar';
+import CaesarCypherDemo from './caesar_cypher_module/caesar_demo';
 
 function App() {
 
