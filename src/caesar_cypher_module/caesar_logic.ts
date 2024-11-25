@@ -1,4 +1,24 @@
-export const encryptWithCaesarCypher = (letter: string, step?: number): string => {
+import { useState } from "react";
+
+const useCaesarCipher = (defaultText = "Write your sentence", defaultStep = 0) => {
+  const [text, setText] = useState<string>(defaultText);
+  const [step, setStep] = useState<number>(defaultStep);
+
+  const updateText = (newText: string) => setText(newText);
+  const updateStep = (newStep: number) => setStep(newStep);
+
+  return {
+    text,
+    step,
+    encryptWithCaesarCipher,
+    updateText,
+    updateStep,
+  };
+};
+
+export default useCaesarCipher;
+
+export const encryptWithCaesarCipher = (letter: string, step?: number): string => {
     let cypherLetter: string = '';
     const cypherStep = step != undefined ? step % 26 : 1;
 

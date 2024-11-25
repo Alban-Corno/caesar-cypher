@@ -1,6 +1,5 @@
-import { Card } from "antd";
-import { Typography } from "antd";
-import CaesarComponent from "./caesar_component";
+import { Card, Typography } from "antd";
+import CaesarComponent from "./CaesarComponent";
 
 const { Title } = Typography;
 

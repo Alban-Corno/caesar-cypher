@@ -1,19 +1,24 @@
 import { Input, InputNumber } from "antd";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Typography } from "antd";
-import { encryptWithCaesarCypher } from "./caesar_logic";
+import useCaesarCipher from "./caesar_logic";
 const { Paragraph } = Typography;
 
 export default function CaesarComponent() {
     const defaultTextSentence = "Write your sentence";
-    const [text, setText] = useState<string>();
-    const [step, setStep] = useState<number>();
+    const {
+        text,
+        step,
+        encryptWithCaesarCipher,
+        updateText,
+        updateStep,
+      } = useCaesarCipher();
     const minWidth: string = "50px";
     const communeBorderRadius = 0;
     const defaultStep = 0;
     const marginTop = 20;
 
-    useEffect(() => { if (text == '') { setStep(0) } }, [text]);
+    useEffect(() => { if (text == '') { updateStep(0) } }, [text, updateStep]);
 
     return (
         <>
@@ -21,14 +26,16 @@ export default function CaesarComponent() {
                 <Input
                     placeholder={defaultTextSentence}
                     value={text}
-                    onChange={(e) => setText(e.target.value)}
+                    onChange={(e) => updateText(e.target.value)}
                     style={{ borderTopRightRadius: communeBorderRadius, borderBottomRightRadius: communeBorderRadius }}
+                    data-testid="text-input"
                 />
                 <InputNumber
                     defaultValue={defaultStep}
                     value={step ?? defaultStep}
-                    onChange={(e) => setStep(e ?? defaultStep)}
+                    onChange={(e) => updateStep(e ?? defaultStep)}
                     style={{ borderTopLeftRadius: communeBorderRadius, borderBottomLeftRadius: communeBorderRadius, minWidth: minWidth }}
+                    data-testid="step-input"
                 />
             </div >
             <Paragraph style={{ marginTop: marginTop }}>
@@ -36,7 +43,7 @@ export default function CaesarComponent() {
                     <span style={{ fontStyle: "italic", color: "gray" }}>
                         {defaultTextSentence}
                     </span>
-                    : encryptWithCaesarCypher(text, step)
+                    : encryptWithCaesarCipher(text, step)
                 }
             </Paragraph>
         </>
