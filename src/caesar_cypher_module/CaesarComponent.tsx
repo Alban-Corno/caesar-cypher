@@ -38,9 +38,9 @@ export default function CaesarComponent() {
                     data-testid="step-input"
                 />
             </div >
-            <Paragraph style={{ marginTop: marginTop }}>
+            <Paragraph style={{ marginTop: marginTop }} data-testid="paragraph-output">
                 {(!text || text == '') ?
-                    <span style={{ fontStyle: "italic", color: "gray" }}>
+                    <span style={{ fontStyle: "italic", color: "black" }}>
                         {defaultTextSentence}
                     </span>
                     : encryptWithCaesarCipher(text, step)

@@ -21,7 +21,7 @@ export default useCaesarCipher;
 export const encryptWithCaesarCipher = (letter: string, step?: number): string => {
     let cypherLetter: string = '';
     const cypherStep = step != undefined ? step % 26 : 1;
-
+    
     if (letter.length != 0 && letter != "") {
         for (let index = 0; index < letter.length; index++) {
             const char = letter[index];
