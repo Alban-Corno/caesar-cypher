@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()], // Activer le plugin React pour Vite
+  base: '/caesar-cypher/',
   test: {
     globals: true, // Activer les variables globales pour les tests
     environment: 'jsdom', // Configurer l'environnement pour simuler un DOM
